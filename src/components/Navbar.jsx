@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePrivy } from "@privy-io/react-auth";
-import { useStateContext } from "../context"; // Adjust the import path
+import { useStateContext } from "../context"; 
 
 import  CustomButton  from "./CustomButton";
 import { menu, search } from "../assets";
 import { navlinks } from "../constants";
 import { IconHeartHandshake } from "@tabler/icons-react";
+
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -38,11 +39,15 @@ const Navbar = () => {
   }, [authenticated, user, fetchUserInfo]);
 
   const handleLoginLogout = useCallback(() => {
+    console.log("handleLoginLogout");
     if (authenticated) {
+      console.log("TT01 hadle logout function call")
       logout();
     } else {
+      console.log("TT01 hadle login function call")
       login().then(() => {
         if (user) {
+          console.log("TT0 function call",user)
           fetchUserInfo();
         }
       });
